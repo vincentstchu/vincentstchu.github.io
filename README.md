@@ -1,37 +1,24 @@
-## Welcome to GitHub Pages
+近期碰到的问题1:
+archlinux下android studio的AVD打不开的方法：
+Fix libGL error: unable to load driver: i965_dri.so
 
-You can use the [editor on GitHub](https://github.com/vincentstchu/vincentstchu.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+I have Android Studio 2.1.1 and updated mesa driver (11.2.1-1 -> 11.2.2-1).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This morning I got following error: libGL error: unable to load driver: i965_dri.so.
 
-### Markdown
+Solution
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+# Arch Linux
+mv ~/Android/Sdk/tools/lib64/libstdc++/libstdc++.so.6{,.bak}
+mv ~/Android/Sdk/tools/lib64/libstdc++/libstdc++.so.6.0.18{,.bak}
+ln -s /usr/lib/libstdc++.so  ~/Android/Sdk/tools/lib64/libstdc++/
 
-```markdown
-Syntax highlighted code block
+近期碰到的问题2:
+开关机啪啪响解决方法：
+	在/etc/modprobe.d/下创建文件modprobe.conf并添加代码：options snd-hda-intel model=,generic
 
-# Header 1
-## Header 2
-### Header 3
+耳机电流声解决：
+	sudo alsamixer
+按F6选择第二个（HDA INTEL PCH），然后把auto mute改为disable
+	sudo alsactl store
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/vincentstchu/vincentstchu.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
